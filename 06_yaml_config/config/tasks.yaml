@@ -1,0 +1,24 @@
+research_task:
+  description: >
+    对 {topic} 进行全面研究。
+    请收集以下信息：
+    1. {topic} 的基本概念和定义
+    2. {topic} 的核心特点和优势
+    3. {topic} 的典型应用场景
+    确保信息准确、全面。
+  expected_output: >
+    一份结构化的研究报告，包含上述3个方面的关键信息，每个方面列出2-3个要点。
+  agent: researcher
+
+
+writing_task:
+  description: >
+    基于研究报告，撰写一篇关于 {topic} 的介绍文章。
+    要求：
+    1. 文章结构清晰，包含引言、正文、总结
+    2. 语言通俗易懂，适合初学者阅读
+    3. 重点突出，有自己的见解
+  expected_output: >
+    一篇约300字的介绍文章，结构完整、语言流畅。
+  agent: writer
+  output_file: output\article.md

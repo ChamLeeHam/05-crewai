@@ -1,0 +1,26 @@
+# 检索任务：分配给retriever_agent
+retrieval_task:
+  description: >
+    从可用资源（优先PDF，其次网络）中检索与用户查询{query}最相关的成绩信息，
+    需提取关键信息：学生姓名、班级、科目分数（如有）、排名（如有）。
+  expected_output: >
+    文本形式的原始检索结果，包含来源（PDF/网络链接）和具体成绩信息；
+    若未找到，需注明“PDF无结果”和“网络无结果”。
+  agent: retriever_agent
+# 响应合成任务：分配给response_synthesizer_agent
+response_task:
+  description: >
+    基于检索到的原始信息，为用户查询{query}合成最终回答，要求：
+    1. 结构清晰：先说明是否找到信息，再分点列出成绩（若有）；
+    2. 语言简洁：避免冗余，不超过300字；
+    3. 来源透明：注明信息来自PDF还是网络。
+  expected_output: >
+    自然语言回答，示例：
+    “已找到高三一班张三的成绩信息（来自PDF）：
+    - 语文：120分
+    - 数学：135分
+    - 英语：118分
+    总分：373分，班级排名第5。”
+    若未找到：“抱歉，我找不到该学生的成绩信息。”
+  agent: response_synthesizer_agent
+  output_file: output\成绩查询结果.md
